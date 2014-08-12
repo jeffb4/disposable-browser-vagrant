@@ -1,0 +1,10 @@
+zone "somedomain.us" {
+  type forward;
+  forward only;
+  forwarders {
+{% for forwarder in forward_hosts %}
+  {{ forwarder }};
+{% endfor %}
+  };
+};
+

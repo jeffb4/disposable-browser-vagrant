@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: false
+  vars:
+    forward_hosts: [ '8.8.8.8', '8.8.4.4' ]
+
+  tasks:
+  - name: Setup Bind9 zone file configuration
+    template: dest=/etc/bind/zones src=zones.j2 owner=root group=root mode=0644
+  - name: Restart Bind9 service
+    service: name=bind9 state=restarted
+
